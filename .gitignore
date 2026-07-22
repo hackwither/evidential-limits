@@ -1,0 +1,18 @@
+# Cached datasets fetched by Study 4 (regenerated on first run)
+data/*.csv
+data/*.json
+
+# Generated figures and tables
+*.pdf
+*.png
+*.csv
+!requirements.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+junk/
+.DS_Store

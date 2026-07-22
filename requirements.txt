@@ -1,0 +1,13 @@
+# Versions explicitly reported in the manuscript or supplied repository.
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+matplotlib==3.10.8
+scikit-learn==1.8.0
+
+# Required by the retained Figure 3 pipeline; exact paper-run versions were not supplied.
+sentence-transformers>=3.0,<6
+umap-learn>=0.5.6,<0.6
+datasets>=2.19,<5
+huggingface-hub>=0.23,<2
+pyarrow>=15
