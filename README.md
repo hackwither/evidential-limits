@@ -1,7 +1,6 @@
-# Not Yet Caught Is Not Safe — analysis code
+# Analysis for What AI Red-Team Null Results Can and Cannot Tell Us
 
 This respository contains code for the empirical sections of *Not Yet Caught Is Not Safe: What AI Red-Team Null Results Can and Cannot Tell Us*. 
-
 The paper's central claim is statistical: a red-team evaluation that observes zero harmful outputs has not shown a model safe, and for sufficiently rare harms no feasible passive benchmark can. These studies quantify how far current practice sits from the
 sample sizes that claim would require.
 
@@ -27,4 +26,4 @@ Python 3.11 or newer is recommended. The dependency set is deliberately small. N
 ## License
 
 Code released under the MIT License (see `LICENSE`). The bundled datasets keep their
-original licenses, listed in `data/README.md`.
+original licenses.
