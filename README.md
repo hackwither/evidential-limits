@@ -18,7 +18,7 @@ sample sizes.
   <img
     src="./docs/assets/feasibility_boundary.png"
     alt="Feasibility boundary for null-result certification"
-    width="760"
+    width="500"
   />
 </p>
 
