@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+
 TABLE1_HARM_RATES = (1e-2, 1e-3, 1e-4, 1e-5)
 TABLE1_SAMPLE_SIZES = (250, 520, 2_100, 5_000, 10_000, 100_000)
 REPRESENTATIVE_BENCHMARKS = {
@@ -58,7 +59,7 @@ def zero_event_clopper_pearson_upper(
     return float(1.0 - tail_alpha ** (1.0 / n))
 
 
-def make_table1() -> pd.DataFrame:
+def make_probability_table() -> pd.DataFrame:
     rows = []
     for p in TABLE1_HARM_RATES:
         row: dict[str, float | str] = {"harm_rate": p}
@@ -81,26 +82,74 @@ def make_required_n_table() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def plot_false_certification(output_stem: Path) -> None:
+def plot_false_certification_and_boundary(output_stem: Path) -> None:
+    if __package__:
+        from .evidential_ceiling import boundary_rate
+    else:
+        from evidential_ceiling import boundary_rate
+
     n_values = np.unique(np.logspace(np.log10(30), 6, 400).astype(int))
-    fig, ax = plt.subplots(figsize=(8.5, 5.5))
+    fig, (probability_ax, boundary_ax) = plt.subplots(1, 2, figsize=(13, 5.2))
 
     for p in TABLE1_HARM_RATES:
         probabilities = false_certification_probability(n_values, p)
-        ax.semilogx(n_values, probabilities, linewidth=2.2, label=f"p={p:g}")
+        probability_ax.semilogx(
+            n_values,
+            probabilities,
+            linewidth=2.2,
+            label=f"p={p:g}",
+        )
 
-    for name, n in REPRESENTATIVE_BENCHMARKS.items():
-        ax.axvline(n, linewidth=0.8, alpha=0.35)
-        ax.text(n, 0.86, name, rotation=90, va="top", ha="right", fontsize=7)
+    probability_ax.axvspan(250, 2_100, color="#999999", alpha=0.15)
+    probability_ax.text(
+        725,
+        0.04,
+        "current public\nbenchmarks",
+        ha="center",
+        fontsize=8,
+    )
+    probability_ax.axhline(
+        0.05,
+        linestyle="--",
+        linewidth=1.4,
+        color="black",
+        label="5% tolerance",
+    )
+    probability_ax.set_xlim(30, 1_000_000)
+    probability_ax.set_ylim(0, 1.0)
+    probability_ax.set_xlabel("Evaluation size ($n$; log scale)")
+    probability_ax.set_ylabel("$P(k=0\\mid n,p)$")
+    probability_ax.set_title("(a) False certification", loc="left")
+    probability_ax.grid(True, which="both", alpha=0.25)
+    probability_ax.legend(frameon=False, fontsize=8)
 
-    ax.axhline(0.05, linestyle="--", linewidth=1.4, label="5% tolerance")
-    ax.set_xlim(30, 1_000_000)
-    ax.set_ylim(0, 1.0)
-    ax.set_xlabel("Evaluation size (n; log scale)")
-    ax.set_ylabel("P(observe zero harms | true harm rate p)")
-    ax.set_title("False-certification probability after a zero-harm evaluation")
-    ax.grid(True, which="both", alpha=0.25)
-    ax.legend(frameon=False, fontsize=8)
+    ceilings = np.logspace(2, 7, 500)
+    boundary_specs = (
+        (0.5, 0.5, "$\\tau=0.5, r=0.5$"),
+        (0.1, 0.5, "$\\tau=0.1, r=0.5$"),
+        (0.1, 0.1, "$\\tau=0.1, r=0.1$"),
+    )
+    for threshold, ratio, label in boundary_specs:
+        boundary_ax.loglog(
+            ceilings,
+            boundary_rate(threshold, ceilings, ratio),
+            linewidth=2,
+            label=label,
+        )
+    boundary_ax.fill_between(
+        ceilings,
+        1e-7,
+        boundary_rate(0.5, ceilings, 0.5),
+        color="#b2182b",
+        alpha=0.10,
+        label="impossibility region for $\\tau=0.5, r=0.5$",
+    )
+    boundary_ax.set_ylim(1e-9, 1e-2)
+    boundary_ax.set_xlabel("Feasibility ceiling ($N_{max}$)")
+    boundary_ax.set_ylabel("Boundary harm rate ($p_{min}$)")
+    boundary_ax.set_title("(b) The certification boundary", loc="left")
+    boundary_ax.grid(True, which="both", alpha=0.25)
+    boundary_ax.legend(frameon=False, fontsize=8)
     fig.tight_layout()
     fig.savefig(output_stem.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight")
@@ -129,13 +178,16 @@ def main() -> None:
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
-    make_table1().to_csv(
-        args.output_dir / "table1_false_certification_percent.csv", index=False
+    make_probability_table().to_csv(
+        args.output_dir / "table3_false_certification_percent.csv",
+        index=False,
     )
     make_required_n_table().to_csv(
         args.output_dir / "false_certification_required_n.csv", index=False
     )
-    plot_false_certification(args.output_dir / "figure1b_false_certification")
+    plot_false_certification_and_boundary(
+        args.output_dir / "figure3_false_certification_boundary"
+    )
     print_key_results()
 
 

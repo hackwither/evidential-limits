@@ -3,11 +3,17 @@ data/*.csv
 data/*.json
 !requirements.txt
 
+# Generated analysis artifacts
+outputs/
+
 # Python
 __pycache__/
 *.pyc
 .venv/
 venv/
 .ipynb_checkpoints/
+
+# Local/editor files
+*.code-workspace
 junk/
 .DS_Store

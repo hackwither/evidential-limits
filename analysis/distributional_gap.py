@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Distributional-gap analysis reported in the main text and Figure 3.
+"""Distributional-gap analysis reported in the main text and Figure 4.
 
 Compares AdvBench, HarmBench, and the deduplicated LMSYS-Chat-1M sample using
 TF-IDF+SVD and all-MiniLM-L6-v2 sentence embeddings. Outputs sliced Wasserstein
@@ -22,6 +22,7 @@ from scipy.stats import wasserstein_distance
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import rbf_kernel
+
 
 ADVBENCH_URL = (
     "https://raw.githubusercontent.com/llm-attacks/llm-attacks/main/"
@@ -291,7 +292,7 @@ def main() -> None:
     pd.concat([tfidf_metrics, neural_metrics], ignore_index=True).to_csv(
         args.output_dir / "distributional_metrics_combined.csv", index=False
     )
-    make_umap_figure(neural, args.output_dir / "figure3_umap")
+    make_umap_figure(neural, args.output_dir / "figure4_prompt_distributions")
 
     print("\nTF-IDF+SVD metrics")
     print(tfidf_metrics.to_string(index=False))

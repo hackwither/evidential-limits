@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Power analysis reported in Figure 1 and the main text.
+"""Power analysis reported in Figure 2 and the main text.
 
 The simulation matches the manuscript: 8,000 Monte Carlo iterations for each
 benchmark/harm-rate cell, a one-sided pooled two-sample proportions z-test at
@@ -14,10 +14,10 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import numpy as np
 import pandas as pd
 from scipy import stats
+
 
 RNG_SEED = 42
 N_ITER = 8_000
@@ -159,60 +159,29 @@ def required_n_table() -> pd.DataFrame:
     )
 
 
-def plot_power_heatmap(results: pd.DataFrame, output_stem: Path) -> None:
-    pivot = results.pivot(index="benchmark", columns="p_unsafe", values="power")
-    benchmark_order = sorted(
-        BENCHMARKS,
-        key=lambda benchmark: BENCHMARKS[benchmark][0],
-        reverse=True,
-    )
-    pivot = pivot.reindex(benchmark_order)
-
-    fig, ax = plt.subplots(figsize=(13, 5.5))
-    colormap = mcolors.LinearSegmentedColormap.from_list(
-        "power",
-        [
-            (0.00, "#d73027"),
-            (0.25, "#f46d43"),
-            (0.45, "#fee08b"),
-            (0.80, "#a6d96a"),
-            (1.00, "#1a9641"),
-        ],
-    )
-    image = ax.imshow(pivot.values, aspect="auto", cmap=colormap, vmin=0, vmax=1)
-
-    for row in range(pivot.shape[0]):
-        for col in range(pivot.shape[1]):
-            value = pivot.iat[row, col]
-            text_color = "white" if value < 0.35 or value > 0.85 else "black"
-            ax.text(
-                col,
-                row,
-                f"{value:.2f}",
-                ha="center",
-                va="center",
-                fontsize=7.5,
-                color=text_color,
-                fontweight="bold",
-            )
-
-    ax.set_xticks(range(pivot.shape[1]))
-    ax.set_xticklabels(
-        [f"{p:.4f}" for p in pivot.columns], rotation=45, ha="right", fontsize=8
-    )
-    ax.set_yticks(range(pivot.shape[0]))
-    ax.set_yticklabels(
-        [f"{name}\n(n={BENCHMARKS[name][0]:,})" for name in benchmark_order],
-        fontsize=9,
-    )
-    ax.set_xlabel("Harm rate in unsafe model (p_unsafe)")
-    ax.set_title(
-        "Statistical power to detect a 50% improvement in harm rate\n"
-        "across adversarial safety benchmarks (α=0.05; 8,000 Monte Carlo iterations)"
-    )
-    colorbar = fig.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
-    colorbar.set_label("Statistical power (1−β)")
-    colorbar.ax.axhline(TARGET_POWER, linewidth=2, linestyle="--")
+def plot_power_curves(results: pd.DataFrame, output_stem: Path) -> None:
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    for benchmark, group in results.groupby("benchmark", sort=False):
+        group = group.sort_values("p_unsafe")
+        ax.semilogx(
+            group["p_unsafe"],
+            group["power"],
+            marker="o",
+            markersize=3,
+            linewidth=1.7,
+            label=f"{benchmark} (n={BENCHMARKS[benchmark][0]:,})",
+        )
+    ax.axhline(TARGET_POWER, color="black", linestyle=":", linewidth=1.2)
+    ax.axvline(0.01, color="#555555", linestyle="--", linewidth=1)
+    ax.axvline(0.08, color="#555555", linestyle="--", linewidth=1)
+    ax.text(0.01, 0.03, "frontier\np=0.01", ha="center", fontsize=8)
+    ax.text(0.08, 0.03, "high-frequency\np=0.08", ha="center", fontsize=8)
+    ax.set_ylim(0, 1.02)
+    ax.set_xlabel("Unsafe-model harm rate ($p_{unsafe}$)")
+    ax.set_ylabel("Statistical power")
+    ax.set_title("Power to detect a 50% reduction in harm rate")
+    ax.grid(True, which="both", alpha=0.2)
+    ax.legend(frameon=False, fontsize=8, ncol=2)
     fig.tight_layout()
     fig.savefig(output_stem.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(output_stem.with_suffix(".pdf"), bbox_inches="tight")
@@ -265,8 +234,7 @@ def main() -> None:
 
     results.to_csv(args.output_dir / "power_results.csv", index=False)
     required.to_csv(args.output_dir / "required_n_80pct.csv", index=False)
-    plot_power_heatmap(results, args.output_dir / "figure1a_power_heatmap")
-    plot_required_n(args.output_dir / "figure1c_required_n")
+    plot_power_curves(results, args.output_dir / "figure2_statistical_power")
     print_key_results(results)
 
 
