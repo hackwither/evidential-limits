@@ -53,24 +53,6 @@ data/                    Local source data; not version-controlled
 outputs/                 Generated figures and tables; not version-controlled
 ```
 
-## Paper artifacts
-
-| Paper artifact | Generated output |
-| :--- | :--- |
-| Figure 1 caption-consistent reconstruction | `figure1_reconstruction.{png,pdf}` |
-| Figure 2, statistical power across eight suites | `figure2_statistical_power.{png,pdf}` |
-| Figure 3, false certification and feasibility boundary | `figure3_false_certification_boundary.{png,pdf}` |
-| Figure 4, prompt-distribution UMAP | `figure4_prompt_distributions.{png,pdf}` |
-| Table 1, clean sheet versus one harm | `table1_evidence_regimes.csv` |
-| Table 2, elicitation discrimination | `table2_elicitation_discrimination.csv` |
-| Table 3, false-certification surface | `table3_false_certification_percent.csv` |
-| Table 4, claims ladder | `table4_claims_ladder.csv` |
-
-Additional CSV files contain the full Monte Carlo surface, required sample
-sizes, and distributional metrics.
-
-Note: The Figure 1 image embedded in arXiv v1 is being updated in v2. 
-
 ## Install
 
 Python 3.12 matches the paper environment.
