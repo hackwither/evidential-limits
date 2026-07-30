@@ -57,7 +57,7 @@ outputs/                 Generated figures and tables; not version-controlled
 
 | Paper artifact | Generated output |
 | :--- | :--- |
-| Figure 1 caption-consistent reconstruction¹ | `figure1_caption_consistent_reconstruction.{png,pdf}` |
+| Figure 1 caption-consistent reconstruction | `figure1_reconstruction.{png,pdf}` |
 | Figure 2, statistical power across eight suites | `figure2_statistical_power.{png,pdf}` |
 | Figure 3, false certification and feasibility boundary | `figure3_false_certification_boundary.{png,pdf}` |
 | Figure 4, prompt-distribution UMAP | `figure4_prompt_distributions.{png,pdf}` |
@@ -69,17 +69,7 @@ outputs/                 Generated figures and tables; not version-controlled
 Additional CSV files contain the full Monte Carlo surface, required sample
 sizes, and distributional metrics.
 
-¹ The Figure 1 image embedded in arXiv v1 compares null-result evidence with
-positive-finding lines parameterized by a false-positive rate, while its caption
-describes a clean sheet and one observed harm scored against the same
-hypothesis pair. Section 4.4 identifies the former comparison as invalid. The
-generated reconstruction follows the caption and equations rather than the
-embedded image.
-
-Table 4 is emitted with the nearest-integer convention used in the published
-table. The reusable sample-size functions return conservative integer ceilings;
-at a few operating points these are one trial larger than the displayed paper
-value.
+Note: The Figure 1 image embedded in arXiv v1 is being updated in v2. 
 
 ## Install
 
