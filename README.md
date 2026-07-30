@@ -100,13 +100,6 @@ The script samples 10,000 conversations with seed 42 and checks for the 9,089
 deduplicated first-user-turn queries reported in the paper.
 
 ## Reproduce all results
-
-```bash
-python run_all.py \
-  --lmsys-path data/lmsys_sample.csv \
-  --model-revision <paper-model-revision>
-```
-
 AdvBench and HarmBench are fetched from their upstream repositories by
 default. To make the run entirely local:
 
