@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below and, for the calculator, this software."
+title: "Evidential Ceiling Calculator and reproducibility code for What AI Red-Team Evaluations Can and Cannot Prove"
+type: software
+authors:
+  - family-names: Kaur
+    given-names: Bandana
+    orcid: "https://orcid.org/0009-0001-3543-2140"
+version: 1.0.0
+license: MIT
+url: "https://hackwither.co.in/evidential-ceiling/"
+repository-code: "https://github.com/hackwither/evidential-limits"
+keywords:
+  - AI red teaming
+  - AI evaluation
+  - AI safety benchmarks
+  - evidential ceiling
+  - likelihood ratio
+preferred-citation:
+  type: article
+  title: "What AI Red-Team Evaluations Can and Cannot Prove"
+  authors:
+    - family-names: Kaur
+      given-names: Bandana
+      orcid: "https://orcid.org/0009-0001-3543-2140"
+  year: 2026
+  identifiers:
+    - type: doi
+      value: 10.48550/arXiv.2607.21735
+  url: "https://arxiv.org/abs/2607.21735"
+  repository: arXiv

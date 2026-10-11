@@ -3,9 +3,10 @@
 Reproducibility code for:
 
 > Bandana Kaur. *What AI Red-Team Evaluations Can and Cannot Prove*.
-> arXiv:2607.21735v1, 2026.
+> arXiv:2607.21735, 2026. doi:[10.48550/arXiv.2607.21735](https://doi.org/10.48550/arXiv.2607.21735)
 
-[Read the paper on arXiv](https://arxiv.org/abs/2607.21735v1).
+[Read the paper on arXiv](https://arxiv.org/abs/2607.21735) ·
+[Use the calculator](https://hackwither.co.in/evidential-ceiling/)
 
 The paper defines an evaluation's **evidential ceiling**: the largest factor by
 which one feasible result can move belief between acceptable-risk and
@@ -36,9 +37,44 @@ highlighted example shows that with <i>N</i><sub>max</sub> = 100,000, τ = 0.5,
 and <i>r</i> = 0.5, the boundary is approximately
 <i>p</i><sub>min</sub> = 1.4 × 10<sup>−5</sup>.
 
+## Evidential Ceiling Calculator
+
+[hackwither.co.in/evidential-ceiling](https://hackwither.co.in/evidential-ceiling/) answers
+*what does this red-team result actually prove?* It runs entirely in the browser. Its maths lives
+here, as pure functions with no dependencies:
+
+```text
+calculator/ceiling.js    the paper's quantities, in log space (log1p/expm1)
+calculator/model.js      everything the calculator shows, from one state
+calculator/verdict.js    the verdict sentence and methods paragraph
+calculator/state.js      input parsing and the URL parameters (docs/url-parameters.md)
+calculator/suites.js     the eight audited suites; ids are frozen
+py/evidential_ceiling    Python twin of ceiling.js (pip install ./py)
+test-vectors.json        every number the paper prints, shared by both test suites
+docs/paper-extract.md    notation, formulas, worked examples and their sections
+```
+
+```bash
+node --test 'calculator/*.test.js'
+PYTHONPATH=py python -m unittest discover -s py/tests -v
+```
+
+```python
+import evidential_ceiling as ec
+
+ec.required_n(pu=1e-3, r=0.5, tau=0.1).exact      # 4602 (Table 4)
+ec.p_min(tau=0.5, nmax=100_000, r=0.5).exact       # 1.386e-05 (§4.3)
+ec.p_cross(n=520, r=0.5).approx                    # 1.333e-03 (Corollary 1)
+```
+
+The website copies `calculator/` in with `npm run sync:ceiling`; the page's version matches this
+repository's release tag.
+
 ## Repository layout
 
 ```text
+calculator/              Evidential Ceiling Calculator core (JavaScript) and tests
+py/                      Python package evidential-ceiling, same functions and vectors
 analysis/
   evidential_ceiling.py  Figure 1 and Tables 1, 2, and 4
   power_analysis.py      Figure 2 and Monte Carlo power results

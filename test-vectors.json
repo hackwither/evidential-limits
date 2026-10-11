@@ -1,0 +1,1256 @@
+{
+ "paper": "Kaur (2026), What AI Red-Team Evaluations Can and Cannot Prove, arXiv:2607.21735v2",
+ "conventions": "r = p_s/p_u; Λ = P(result|H1)/P(result|H0); bits are |log2 Λ| unless stated. Tolerances are absolute (tol) and match the precision the paper prints: half a unit in its last digit unless a note says otherwise.",
+ "vectors": [
+  {
+   "id": "s4.1-lr0-advbench",
+   "source": "§4.1",
+   "fn": "lrClean",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 0.77,
+   "tol": 0.005
+  },
+  {
+   "id": "s4.4-lr1-advbench",
+   "source": "§4.4",
+   "fn": "lrOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 1.54,
+   "tol": 0.005
+  },
+  {
+   "id": "s4.4-ratio-advbench",
+   "source": "§4.4",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 1.7,
+   "tol": 0.05
+  },
+  {
+   "id": "table1-clean-1e-2",
+   "source": "Table 1",
+   "fn": "bitsClean",
+   "args": {
+    "n": 520,
+    "pu": 0.01,
+    "r": 0.5
+   },
+   "expected": 3.779,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-oneharm-1e-2",
+   "source": "Table 1",
+   "fn": "bitsOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.01,
+    "r": 0.5
+   },
+   "expected": 2.772,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-ratio-1e-2",
+   "source": "Table 1",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 0.01,
+    "r": 0.5
+   },
+   "expected": 0.73,
+   "tol": 0.005
+  },
+  {
+   "id": "table1-clean-5e-3",
+   "source": "Table 1",
+   "fn": "bitsClean",
+   "args": {
+    "n": 520,
+    "pu": 0.005,
+    "r": 0.5
+   },
+   "expected": 1.882,
+   "tol": 0.001,
+   "note": "Paper prints 1.882; the exact value 1.88256 rounds to 1.883, so this cell is held to ±0.001."
+  },
+  {
+   "id": "table1-oneharm-5e-3",
+   "source": "Table 1",
+   "fn": "bitsOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.005,
+    "r": 0.5
+   },
+   "expected": 0.879,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-ratio-5e-3",
+   "source": "Table 1",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 0.005,
+    "r": 0.5
+   },
+   "expected": 0.47,
+   "tol": 0.005
+  },
+  {
+   "id": "table1-clean-1e-3",
+   "source": "Table 1",
+   "fn": "bitsClean",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 0.375,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-oneharm-1e-3",
+   "source": "Table 1",
+   "fn": "bitsOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 0.625,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-ratio-1e-3",
+   "source": "Table 1",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 1.7,
+   "tol": 0.05
+  },
+  {
+   "id": "table1-clean-1e-4",
+   "source": "Table 1",
+   "fn": "bitsClean",
+   "args": {
+    "n": 520,
+    "pu": 0.0001,
+    "r": 0.5
+   },
+   "expected": 0.038,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-oneharm-1e-4",
+   "source": "Table 1",
+   "fn": "bitsOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.0001,
+    "r": 0.5
+   },
+   "expected": 0.963,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-ratio-1e-4",
+   "source": "Table 1",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 0.0001,
+    "r": 0.5
+   },
+   "expected": 25.7,
+   "tol": 0.05
+  },
+  {
+   "id": "table1-clean-1e-5",
+   "source": "Table 1",
+   "fn": "bitsClean",
+   "args": {
+    "n": 520,
+    "pu": 1e-05,
+    "r": 0.5
+   },
+   "expected": 0.004,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-oneharm-1e-5",
+   "source": "Table 1",
+   "fn": "bitsOneHarm",
+   "args": {
+    "n": 520,
+    "pu": 1e-05,
+    "r": 0.5
+   },
+   "expected": 0.996,
+   "tol": 0.0005
+  },
+  {
+   "id": "table1-ratio-1e-5",
+   "source": "Table 1",
+   "fn": "ratioHarmToClean",
+   "args": {
+    "n": 520,
+    "pu": 1e-05,
+    "r": 0.5
+   },
+   "expected": 265.6,
+   "tol": 0.05
+  },
+  {
+   "id": "intro-1.4x",
+   "source": "§1",
+   "fn": "ratioCleanToHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.01,
+    "r": 0.5
+   },
+   "expected": 1.4,
+   "tol": 0.05
+  },
+  {
+   "id": "s4.4-2.1x",
+   "source": "§4.4",
+   "fn": "ratioCleanToHarm",
+   "args": {
+    "n": 520,
+    "pu": 0.005,
+    "r": 0.5
+   },
+   "expected": 2.1,
+   "tol": 0.05
+  },
+  {
+   "id": "table4-tau0.5-1e-2",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.5
+   },
+   "expected": 138,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.5-1e-3",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.001,
+    "r": 0.5,
+    "tau": 0.5
+   },
+   "expected": 1386,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.5-1e-4",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.0001,
+    "r": 0.5,
+    "tau": 0.5
+   },
+   "expected": 13862,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.5-1e-5",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 1e-05,
+    "r": 0.5,
+    "tau": 0.5
+   },
+   "expected": 138629,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.1-1e-2",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.1
+   },
+   "expected": 458,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.1-1e-3",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.001,
+    "r": 0.5,
+    "tau": 0.1
+   },
+   "expected": 4602,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.1-1e-4",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.0001,
+    "r": 0.5,
+    "tau": 0.1
+   },
+   "expected": 46049,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.1-1e-5",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 1e-05,
+    "r": 0.5,
+    "tau": 0.1
+   },
+   "expected": 460514,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.01-1e-2",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 915,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.01-1e-3",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.001,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 9204,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.01-1e-4",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.0001,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 92097,
+   "tol": 0
+  },
+  {
+   "id": "table4-tau0.01-1e-5",
+   "source": "Table 4; §4.2",
+   "fn": "requiredN",
+   "args": {
+    "pu": 1e-05,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 921028,
+   "tol": 0
+  },
+  {
+   "id": "table4-fc5-1e-2",
+   "source": "Table 4; §4.2; §5.2",
+   "fn": "requiredNFalseCert",
+   "args": {
+    "p": 0.01,
+    "phi": 0.05
+   },
+   "expected": 299,
+   "tol": 0
+  },
+  {
+   "id": "table4-fc5-1e-3",
+   "source": "Table 4; §4.2; §5.2",
+   "fn": "requiredNFalseCert",
+   "args": {
+    "p": 0.001,
+    "phi": 0.05
+   },
+   "expected": 2995,
+   "tol": 0
+  },
+  {
+   "id": "table4-fc5-1e-4",
+   "source": "Table 4; §4.2; §5.2",
+   "fn": "requiredNFalseCert",
+   "args": {
+    "p": 0.0001,
+    "phi": 0.05
+   },
+   "expected": 29956,
+   "tol": 0
+  },
+  {
+   "id": "table4-fc5-1e-5",
+   "source": "Table 4; §4.2; §5.2",
+   "fn": "requiredNFalseCert",
+   "args": {
+    "p": 1e-05,
+    "phi": 0.05
+   },
+   "expected": 299572,
+   "tol": 0
+  },
+  {
+   "id": "table4-feasible-1e-2",
+   "source": "Table 4",
+   "fn": "feasibleAtNmax",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 100000
+   },
+   "expected": true
+  },
+  {
+   "id": "table4-feasible-1e-3",
+   "source": "Table 4",
+   "fn": "feasibleAtNmax",
+   "args": {
+    "pu": 0.001,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 100000
+   },
+   "expected": true
+  },
+  {
+   "id": "table4-feasible-1e-4",
+   "source": "Table 4",
+   "fn": "feasibleAtNmax",
+   "args": {
+    "pu": 0.0001,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 100000
+   },
+   "expected": true
+  },
+  {
+   "id": "table4-feasible-1e-5",
+   "source": "Table 4",
+   "fn": "feasibleAtNmax",
+   "args": {
+    "pu": 1e-05,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 100000
+   },
+   "expected": false
+  },
+  {
+   "id": "s5.2-fc1-1e-3",
+   "source": "§5.2",
+   "fn": "requiredNFalseCert",
+   "args": {
+    "p": 0.001,
+    "phi": 0.01
+   },
+   "expected": 4603,
+   "tol": 0,
+   "note": "Paper: n > 4,603 for below one percent; the smallest such n is 4,603 under ⌈·⌉."
+  },
+  {
+   "id": "s4.3-pmin",
+   "source": "§4.3",
+   "fn": "pMin",
+   "args": {
+    "tau": 0.5,
+    "nmax": 100000,
+    "r": 0.5
+   },
+   "expected": 1.4e-05,
+   "tol": 5e-07
+  },
+  {
+   "id": "s4.3-pmin-approx",
+   "source": "§4.3; Thm 1",
+   "fn": "pMinApprox",
+   "args": {
+    "tau": 0.5,
+    "nmax": 100000,
+    "r": 0.5
+   },
+   "expected": 1.4e-05,
+   "tol": 5e-07
+  },
+  {
+   "id": "s4.3-pmin-inverts",
+   "source": "Thm 2 proof",
+   "fn": "lrCleanAtPMin",
+   "args": {
+    "tau": 0.5,
+    "nmax": 100000,
+    "r": 0.5
+   },
+   "expected": 0.5,
+   "tol": 1e-09
+  },
+  {
+   "id": "cor1-520",
+   "source": "Cor. 1; Table 1",
+   "fn": "pCross",
+   "args": {
+    "n": 520,
+    "r": 0.5
+   },
+   "expected": 0.00133,
+   "tol": 5e-06
+  },
+  {
+   "id": "cor1-1e5",
+   "source": "Cor. 1",
+   "fn": "pCross",
+   "args": {
+    "n": 100000,
+    "r": 0.5
+   },
+   "expected": 6.93e-06,
+   "tol": 5e-09
+  },
+  {
+   "id": "cor1-520-exact",
+   "source": "Cor. 1 (exact form)",
+   "fn": "pCrossExact",
+   "args": {
+    "n": 520,
+    "r": 0.5
+   },
+   "expected": 0.00133,
+   "tol": 5e-06
+  },
+  {
+   "id": "s4.4-null-at-2px",
+   "source": "§4.4",
+   "fn": "lrOneHarmAtNull",
+   "args": {
+    "n": 520,
+    "r": 0.5
+   },
+   "expected": 1.0,
+   "tol": 1e-12
+  },
+  {
+   "id": "s4.4-null-approx-2px",
+   "source": "§4.4",
+   "fn": "pOneHarmNullOverPCross",
+   "args": {
+    "n": 520,
+    "r": 0.5
+   },
+   "expected": 2.0,
+   "tol": 0.01
+  },
+  {
+   "id": "table2-passive-520",
+   "source": "Table 2; §4.5",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 520,
+    "q1": 0.001,
+    "q0": 0.0005
+   },
+   "expected": 0.38,
+   "tol": 0.005
+  },
+  {
+   "id": "table2-passive-nmax",
+   "source": "Table 2; §4.5",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 100000,
+    "q1": 0.001,
+    "q0": 0.0005
+   },
+   "expected": 72.19,
+   "tol": 0.005
+  },
+  {
+   "id": "table2-adaptive-1",
+   "source": "Table 2; §4.5",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 1,
+    "q1": 0.9,
+    "q0": 0.1
+   },
+   "expected": 3.17,
+   "tol": 0.005
+  },
+  {
+   "id": "table2-adaptive-5",
+   "source": "Table 2; §4.5",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 5,
+    "q1": 0.9,
+    "q0": 0.1
+   },
+   "expected": 15.85,
+   "tol": 0.005
+  },
+  {
+   "id": "table2-nondisc-5",
+   "source": "Table 2; §4.5",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 5,
+    "q1": 0.9,
+    "q0": 0.85
+   },
+   "expected": 2.92,
+   "tol": 0.005
+  },
+  {
+   "id": "s4.5-log2-9",
+   "source": "§4.5; repo test",
+   "fn": "elicitationBits",
+   "args": {
+    "n": 1,
+    "q1": 0.9,
+    "q0": 0.1
+   },
+   "expected": 3.169925001442312,
+   "tol": 1e-12
+  },
+  {
+   "id": "s4.5-kappa-zero",
+   "source": "§4.5",
+   "fn": "elicitationKappa",
+   "args": {
+    "q1": 0.9,
+    "q0": 0.9
+   },
+   "expected": 0.0,
+   "tol": 0
+  },
+  {
+   "id": "s4.5-two-reps",
+   "source": "§4.5",
+   "fn": "replicationsToTau",
+   "args": {
+    "q1": 0.9,
+    "q0": 0.1,
+    "tau": 0.1
+   },
+   "expected": 2,
+   "tol": 0
+  },
+  {
+   "id": "s4.5-three-reps",
+   "source": "§4.5",
+   "fn": "replicationsToTau",
+   "args": {
+    "q1": 0.9,
+    "q0": 0.1,
+    "tau": 0.01
+   },
+   "expected": 3,
+   "tol": 0
+  },
+  {
+   "id": "s4.5-passive-match",
+   "source": "§4.5",
+   "fn": "passiveNToMatch",
+   "args": {
+    "q1": 0.9,
+    "q0": 0.1,
+    "pu": 0.001,
+    "r": 0.5
+   },
+   "expected": 4400,
+   "tol": 100,
+   "note": "Paper: roughly 4,400 prompts."
+  },
+  {
+   "id": "s4.6-tau",
+   "source": "§4.6",
+   "fn": "tauFromLoss",
+   "args": {
+    "L": 100,
+    "O0": 1
+   },
+   "expected": 0.01,
+   "tol": 1e-15
+  },
+  {
+   "id": "s4.6-n-1e-2",
+   "source": "§4.6",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 915,
+   "tol": 0
+  },
+  {
+   "id": "s4.6-n-1e-3",
+   "source": "§4.6",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.001,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 9204,
+   "tol": 0
+  },
+  {
+   "id": "s4.6-n-1e-4",
+   "source": "§4.6",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.0001,
+    "r": 0.5,
+    "tau": 0.01
+   },
+   "expected": 92097,
+   "tol": 0
+  },
+  {
+   "id": "table3-1e-02-250",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 250,
+    "p": 0.01
+   },
+   "expected": 8.1,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-02-520",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 520,
+    "p": 0.01
+   },
+   "expected": 0.5,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-02-2100",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 2100,
+    "p": 0.01
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-02-5000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 5000,
+    "p": 0.01
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-02-10000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 10000,
+    "p": 0.01
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-02-100000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 100000,
+    "p": 0.01
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-250",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 250,
+    "p": 0.001
+   },
+   "expected": 77.9,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-520",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 520,
+    "p": 0.001
+   },
+   "expected": 59.4,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-2100",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 2100,
+    "p": 0.001
+   },
+   "expected": 12.2,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-5000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 5000,
+    "p": 0.001
+   },
+   "expected": 0.7,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-10000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 10000,
+    "p": 0.001
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-03-100000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 100000,
+    "p": 0.001
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-250",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 250,
+    "p": 0.0001
+   },
+   "expected": 97.5,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-520",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 520,
+    "p": 0.0001
+   },
+   "expected": 94.9,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-2100",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 2100,
+    "p": 0.0001
+   },
+   "expected": 81.1,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-5000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 5000,
+    "p": 0.0001
+   },
+   "expected": 60.7,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-10000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 10000,
+    "p": 0.0001
+   },
+   "expected": 36.8,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-04-100000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 100000,
+    "p": 0.0001
+   },
+   "expected": 0.0,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-250",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 250,
+    "p": 1e-05
+   },
+   "expected": 99.8,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-520",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 520,
+    "p": 1e-05
+   },
+   "expected": 99.5,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-2100",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 2100,
+    "p": 1e-05
+   },
+   "expected": 97.9,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-5000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 5000,
+    "p": 1e-05
+   },
+   "expected": 95.1,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-10000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 10000,
+    "p": 1e-05
+   },
+   "expected": 90.5,
+   "tol": 0.05
+  },
+  {
+   "id": "table3-1e-05-100000",
+   "source": "Table 3",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 100000,
+    "p": 1e-05
+   },
+   "expected": 36.8,
+   "tol": 0.05
+  },
+  {
+   "id": "s5.2-strongreject",
+   "source": "§5.2",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 313,
+    "p": 0.001
+   },
+   "expected": 73.1,
+   "tol": 0.05
+  },
+  {
+   "id": "s5.2-advbench",
+   "source": "§5.2",
+   "fn": "falseCertPct",
+   "args": {
+    "n": 520,
+    "p": 0.001
+   },
+   "expected": 59.4,
+   "tol": 0.05
+  },
+  {
+   "id": "s5.2-cp-520",
+   "source": "§5.2",
+   "fn": "cpUpperZeroPct",
+   "args": {
+    "n": 520,
+    "alpha": 0.05
+   },
+   "expected": 0.57,
+   "tol": 0.005
+  },
+  {
+   "id": "s5.2-cp-520-onein",
+   "source": "§5.2; §6",
+   "fn": "cpOneIn",
+   "args": {
+    "n": 520,
+    "alpha": 0.05
+   },
+   "expected": 174,
+   "tol": 0
+  },
+  {
+   "id": "s5.2-cp-2100",
+   "source": "§5.2",
+   "fn": "cpUpperZeroPct",
+   "args": {
+    "n": 2100,
+    "alpha": 0.05
+   },
+   "expected": 0.14,
+   "tol": 0.005
+  },
+  {
+   "id": "s5.2-cp-2100-onein",
+   "source": "§5.2",
+   "fn": "cpOneIn",
+   "args": {
+    "n": 2100,
+    "alpha": 0.05
+   },
+   "expected": 701,
+   "tol": 0
+  },
+  {
+   "id": "s5.2-cp-repo",
+   "source": "repo tests/test_analysis.py",
+   "fn": "cpUpperZeroPct",
+   "args": {
+    "n": 520,
+    "alpha": 0.05
+   },
+   "expected": 0.5744460728146272,
+   "tol": 1e-12
+  },
+  {
+   "id": "s5.3-cp-claude2",
+   "source": "§5.3",
+   "fn": "cpTwoSidedPct",
+   "args": {
+    "n": 328,
+    "k": 4,
+    "alpha": 0.05
+   },
+   "expected": [
+    0.33,
+    3.09
+   ],
+   "tol": 0.005
+  },
+  {
+   "id": "s5.3-deff-10",
+   "source": "§5.3",
+   "fn": "designEffect",
+   "args": {
+    "m": 10,
+    "rho": 0.1
+   },
+   "expected": 1.9,
+   "tol": 1e-12
+  },
+  {
+   "id": "s5.3-deff-25",
+   "source": "§5.3",
+   "fn": "designEffect",
+   "args": {
+    "m": 25,
+    "rho": 0.1
+   },
+   "expected": 3.4,
+   "tol": 1e-12
+  },
+  {
+   "id": "s5.3-neff-25",
+   "source": "§5.3",
+   "fn": "neffFraction",
+   "args": {
+    "m": 25,
+    "rho": 0.1
+   },
+   "expected": 0.29,
+   "tol": 0.005
+  },
+  {
+   "id": "repo-required-458",
+   "source": "repo tests/test_analysis.py",
+   "fn": "requiredN",
+   "args": {
+    "pu": 0.01,
+    "r": 0.5,
+    "tau": 0.1
+   },
+   "expected": 458,
+   "tol": 0
+  }
+ ],
+ "edge": [
+  {
+   "id": "tiny-pu-r-near-1-huge-n",
+   "args": {
+    "n": 1000000000,
+    "k": 0,
+    "pu": 1e-09,
+    "r": 0.999,
+    "tau": 0.05,
+    "nmax": 1000000000
+   }
+  },
+  {
+   "id": "tiny-pu-r-near-1-huge-n-k3",
+   "args": {
+    "n": 1000000000,
+    "k": 3,
+    "pu": 1e-09,
+    "r": 0.999,
+    "tau": 0.05,
+    "nmax": 1000000000
+   }
+  },
+  {
+   "id": "r-near-0",
+   "args": {
+    "n": 520,
+    "k": 0,
+    "pu": 0.001,
+    "r": 1e-09,
+    "tau": 0.1,
+    "nmax": 100000
+   }
+  },
+  {
+   "id": "r-near-1",
+   "args": {
+    "n": 520,
+    "k": 2,
+    "pu": 0.001,
+    "r": 0.999999,
+    "tau": 0.1,
+    "nmax": 100000
+   }
+  },
+  {
+   "id": "pu-near-1",
+   "args": {
+    "n": 50,
+    "k": 49,
+    "pu": 0.999,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 100
+   }
+  },
+  {
+   "id": "k-equals-n",
+   "args": {
+    "n": 10,
+    "k": 10,
+    "pu": 0.1,
+    "r": 0.5,
+    "tau": 0.5,
+    "nmax": 10
+   }
+  },
+  {
+   "id": "n-1",
+   "args": {
+    "n": 1,
+    "k": 0,
+    "pu": 0.5,
+    "r": 0.5,
+    "tau": 0.5,
+    "nmax": 1
+   }
+  },
+  {
+   "id": "huge-nreq",
+   "args": {
+    "n": 520,
+    "k": 0,
+    "pu": 1e-12,
+    "r": 0.5,
+    "tau": 0.001,
+    "nmax": 100000
+   }
+  },
+  {
+   "id": "n-1e15",
+   "args": {
+    "n": 1000000000000000,
+    "k": 0,
+    "pu": 1e-09,
+    "r": 0.5,
+    "tau": 0.01,
+    "nmax": 1000000000000000
+   }
+  }
+ ]
+}

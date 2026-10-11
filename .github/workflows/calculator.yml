@@ -1,0 +1,34 @@
+name: calculator
+
+on:
+  push:
+    paths: ["calculator/**", "py/**", "test-vectors.json", ".github/workflows/calculator.yml"]
+  pull_request:
+    paths: ["calculator/**", "py/**", "test-vectors.json", ".github/workflows/calculator.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test 'calculator/*.test.js'
+
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s py/tests -v
+        env:
+          PYTHONPATH: py

@@ -1,0 +1,26 @@
+{
+  "title": "Evidential Ceiling Calculator and reproducibility code for \"What AI Red-Team Evaluations Can and Cannot Prove\"",
+  "upload_type": "software",
+  "description": "<p>The evidential ceiling of an AI red-team evaluation (Kaur, 2026, arXiv:2607.21735): the largest factor by which one result can move belief under a fixed testing budget. This release contains the zero-dependency calculator core (JavaScript, with a Python twin), the shared test vectors that reproduce every number in the paper, and the paper's reproducibility code. The calculator runs at https://hackwither.co.in/evidential-ceiling/.</p>",
+  "creators": [
+    {
+      "name": "Kaur, Bandana",
+      "orcid": "0009-0001-3543-2140"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": ["AI red teaming", "AI evaluation", "AI safety benchmarks", "evidential ceiling", "likelihood ratio"],
+  "related_identifiers": [
+    {
+      "identifier": "10.48550/arXiv.2607.21735",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://hackwither.co.in/evidential-ceiling/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}

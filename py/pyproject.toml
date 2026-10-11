@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidential-ceiling"
+version = "1.0.0"
+description = "What an AI red-team result can prove: the evidential ceiling of Kaur (2026), arXiv:2607.21735."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Bandana Kaur", email = "bandana@hackwither.co.in" }]
+keywords = ["AI red teaming", "AI evaluation", "AI safety benchmarks", "likelihood ratio", "statistical certification"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Security",
+]
+dependencies = []
+
+[project.urls]
+Calculator = "https://hackwither.co.in/evidential-ceiling/"
+Paper = "https://arxiv.org/abs/2607.21735"
+Source = "https://github.com/hackwither/evidential-limits"
+
+[tool.setuptools]
+packages = ["evidential_ceiling"]
